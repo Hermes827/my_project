@@ -1,6 +1,13 @@
 const backendURL = 'http://localhost:3000/api/v1/notes'
 const noteUl = document.querySelector('#notes-list')
 
+// document.addEventListener('DOMContentLoaded', () => {
+//   var soundEffect = new Audio();
+//   soundEffect.src = "sounds/finalcountdown2.mp3";
+//   soundEffect.volume = 0.40;
+//   soundEffect.play();
+// });
+
 
 fetch(backendURL)
   .then(res => res.json())
@@ -14,26 +21,24 @@ function renderList(data) {
 })
 }
 
-// function renderList(data) {
-//   data.forEach((entry)=> {
-//     noteUl.appendChild(renderListItem(entry))
-//   })
-// }
-//this doesnt work, why? It worked in toytales
-
 function viewEntry(data) {
 }
 
 function renderListItem(entry) {
   const noteLi = document.createElement('li')
   noteLi.id = entry.id
+  noteLi.classList.add(".font")
   noteLi.textContent = entry.title + ": " + entry.content //figure out how to get buttons to go underneath the LI
 
   const deleteBtn = document.createElement('button')
   deleteBtn.textContent = "Delete"
-  // deleteBtn.classList.add("delete")
   deleteBtn.addEventListener('click', (e) => {
     const deleteItem = e.target.parentElement
+
+    var soundEffect = new Audio();
+    soundEffect.src = "sounds/baby.mp3";
+    soundEffect.play();
+
     deleteItem.remove()
 
     fetch(backendURL + '/' + entry.id, {
@@ -49,7 +54,6 @@ function renderListItem(entry) {
       console.log(data)
     })
   })
-  noteLi.appendChild(deleteBtn)
 
   ////////////////////////////////////////////////////////////////////
 
@@ -58,11 +62,8 @@ function renderListItem(entry) {
   editBtn.id = entry.id
   noteLi.appendChild(editBtn) //figure out how to independently modularize this logic and retrieve the
   //element that I need to append to noteLi.
+  noteLi.appendChild(deleteBtn)
   editBtn.addEventListener('click', (e) => {
-
-    // e.preventDefault()
-
-
 
     const item = e.target.parentElement
     console.log(item)
@@ -70,45 +71,45 @@ function renderListItem(entry) {
     let editForm = document.createElement("form")
     editForm.classList.add("edit-form")
 
+    let editFormCancel = document.createElement("form")
+    editFormCancel.classList.add("edit-form-cancel")
+
     let editItemTitle = document.createElement("input")
     editItemTitle.classList.add("edit-input")
-
-
+    editTextField = document.querySelectorAll('.edit-input')
+    editItemTitle.placeholder = "Name of task"
 
     let editItemContent = document.createElement("input")
     editItemContent.classList.add("edit-input")
+    editItemContent.placeholder = "Describe task"
 
     let editSubmitBtn = document.createElement("button")
     editSubmitBtn.textContent = "Submit"
 
     let cancelBtn = document.createElement("button")
     cancelBtn.textContent = "Cancel"
+    cancelBtn.addEventListener('click', ()=> {
+      console.log("hello")
+    })
 
-
-    item.appendChild(editForm)
+    item.appendChild(editFormCancel)
+    editFormCancel.appendChild(editForm)
     editForm.appendChild(editItemTitle)
     editForm.appendChild(editItemContent)
     editForm.appendChild(editSubmitBtn)
-    editForm.appendChild(cancelBtn)
-
-    console.log(editForm)
-
-    // item.appendChild(editItemTitle)
-    // item.appendChild(editItemContent)
-
-
+    editFormCancel.appendChild(cancelBtn)
 
     const editBtnForm = document.querySelector(".edit-form")
 
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
     editBtnForm.addEventListener('submit', (e) => {
 
       e.preventDefault()
+      var soundEffect = new Audio();
+      soundEffect.src = "sounds/problemo.mp3";
+      soundEffect.play();
 
       let editInputs = document.querySelectorAll(".edit-input")
       let editTitle = editInputs[0].value
@@ -139,34 +140,10 @@ function renderListItem(entry) {
 
   })
 
-})
+}, {once : true}); //ttechnically works but doesnt overwrite text, writes it below it
+//have to refresh to get it to update, it looks bad
 
-  // const viewBtn = document.createElement('button')
-  // viewBtn.textContent = "View Entire Entry"
-  // viewBtn.addEventListener('click', viewEntry(entry))
-  // noteLi.appendChild(viewBtn)
   noteUl.appendChild(noteLi)
 
   return noteLi
 }
-
-// function deleteEntry(entry){
-//
-//   document.querySelector('.delete').addEventListener('click', (e) => {
-//     const deleteItem = e.target.parentElement
-//     deleteItem.remove()
-//
-//     fetch(backendURL + '/' + entry.id, {
-//
-//       method: "DELETE",
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json'
-//       }
-//     })
-//     .then(res => res.json())
-//     .then(data => {
-//       console.log(data)
-//     })
-//   })
-//   }

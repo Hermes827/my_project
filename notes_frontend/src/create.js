@@ -5,6 +5,10 @@ formClass.addEventListener('submit', createItem)
 function createItem(e){
 e.preventDefault()
 
+var soundEffect = new Audio();
+soundEffect.src = "sounds/live.mp3";
+soundEffect.play();
+
 let inputs = document.querySelectorAll(".input-text")
 let title = inputs[0].value
 let content = inputs[1].value

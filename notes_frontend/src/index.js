@@ -1,12 +1,12 @@
 const backendURL = 'http://localhost:3000/api/v1/notes'
 const noteUl = document.querySelector('#notes-list')
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   var soundEffect = new Audio();
-//   soundEffect.src = "sounds/finalcountdown2.mp3";
-//   soundEffect.volume = 0.40;
-//   soundEffect.play();
-// });
+document.addEventListener('DOMContentLoaded', () => {
+  var soundEffect = new Audio();
+  soundEffect.src = "sounds/finalcountdown.mp3";
+  soundEffect.volume = 0.25;
+  soundEffect.play();
+});
 
 
 fetch(backendURL)

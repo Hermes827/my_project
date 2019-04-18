@@ -21,7 +21,7 @@ let info = {
   date: date
 }
 
-console.log(info)
+// console.log(info)
 
 fetch(backendURL, {
 
@@ -37,5 +37,8 @@ fetch(backendURL, {
     console.log(data)
     noteUl.appendChild(renderListItem(data))
   })
+
+inputs[0].value = " "
+inputs[1].value = " "
 
 }

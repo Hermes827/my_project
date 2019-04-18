@@ -1,5 +1,6 @@
 const backendURL = 'http://localhost:3000/api/v1/notes'
 const noteUl = document.querySelector('#notes-list')
+const backendComments = 'http://localhost:3000/api/v1/comments'
 
 document.addEventListener('DOMContentLoaded', () => {
   var soundEffect = new Audio();
@@ -29,7 +30,7 @@ function renderListItem(entry) {
   noteLi.id = entry.id
   // noteLi.classList.add("font")
   noteLi.classList.add("noteLi")
-  console.log(entry)
+  // console.log(entry)
   const noteLiSpan = document.createElement('span')
   noteLiSpan.textContent = entry.title + ": " + entry.content + " " //figure out how to get buttons to go underneath the LI
   noteLiSpan.classList.add('noteLi-span')
@@ -77,20 +78,70 @@ function renderListItem(entry) {
   commentBtn.addEventListener('click', (e)=> {
     const commentThing = e.target.parentElement
 
-    const commentLi = document.createElement('li')
+    console.log(commentThing)
+
+    // const commentLi = document.createElement('li')
     const commentInput = document.createElement('input')
+    commentInput.placeholder = "Enter comment here"
+    const commentUsername = document.createElement('input')
+    commentUsername.placeholder = "Enter username here"
     const commentSubmitBtn = document.createElement('button')
+    const commentCancelBtn = document.createElement('button')
+    commentCancelBtn.textContent = "Cancel"
+    commentCancelBtn.addEventListener('click', (e)=> {
+      e.preventDefault()
+      commentForm.classList.add("editForm-disappear")
+      console.log("hello")
+    })
     const commentForm = document.createElement('form')
+    const commentUl = document.createElement('ul')
+    commentThing.appendChild(commentForm)
+    commentThing.appendChild(commentUl)
+    commentForm.appendChild(commentUsername)
     commentForm.appendChild(commentInput)
     commentForm.appendChild(commentSubmitBtn)
+    commentForm.appendChild(commentCancelBtn)
     commentSubmitBtn.textContent = "submit"
-    commentInput.classList.add("comment-input")
-    commentThing.appendChild(commentForm)
-    //working on comment functionality, need to finish programming submit button stuff
-    commentLi.textContent = commentInput.value
-    commentThing.appendChild(commentLi)
 
-    console.log(commentThing)
+    commentForm.addEventListener('submit', (e)=> {
+        e.preventDefault()
+
+        console.log(e.target.parentElement)
+        console.log("hello")
+
+        const commentLi = document.createElement('li')
+        commentLi.textContent = commentUsername.value + ": " + commentInput.value
+        commentUl.appendChild(commentLi)
+
+
+        const bodyData = {
+          username: commentUsername.value,
+          content: commentInput.value,
+          note_id: entry.id
+        }
+
+        fetch(backendComments, {
+          method: "POST",
+          body: JSON.stringify(bodyData),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          commentLi.textContent = data.username + ": " + data.content
+          commentUl.appendChild(commentLi)
+        })
+
+
+    })
+    // commentInput.classList.add("comment-input")
+    //
+    // //working on comment functionality, need to finish programming submit button stuff
+    //
+    // commentThing.appendChild(commentLi)
   })
 
   /////////////////////////////////////////////////////////////////////
@@ -108,11 +159,14 @@ function renderListItem(entry) {
     const item = e.target.parentElement
     console.log(item)
 
+
     let editForm = document.createElement("form")
     editForm.classList.add("edit-form")
+    editForm.classList.remove("editForm-disappear")
+  console.log("hello")
 
-    let editFormCancel = document.createElement("form")
-    editFormCancel.classList.add("edit-form-cancel")
+    // let editFormCancel = document.createElement("form")
+    // editFormCancel.classList.add("edit-form-cancel")
 
     let editItemTitle = document.createElement("input")
     editItemTitle.classList.add("edit-input")
@@ -123,21 +177,60 @@ function renderListItem(entry) {
     editItemContent.classList.add("edit-input")
     editItemContent.placeholder = "Describe task"
 
+    let editDaySelector = document.createElement("select")
+    editDaySelector.classList.add("editDaySelector")
+    let editMonday = document.createElement('option')
+    let editTuesday = document.createElement('option')
+    let editWednesday = document.createElement('option')
+    let editThursday = document.createElement('option')
+    let editFriday = document.createElement('option')
+    let editSaturday = document.createElement('option')
+    let editSunday = document.createElement('option')
+    editDaySelector.appendChild(editMonday)
+    editMonday.value = "Monday"
+    editMonday.textContent = "Monday"
+
+    editDaySelector.appendChild(editTuesday)
+    editTuesday.value = "Tuesday"
+    editTuesday.textContent = "Tuesday"
+
+    editDaySelector.appendChild(editWednesday)
+    editWednesday.value = "Wednesday"
+    editWednesday.textContent = "Wednesday"
+
+    editDaySelector.appendChild(editThursday)
+    editThursday.value = "Thursday"
+    editThursday.textContent = "Thursday"
+
+    editDaySelector.appendChild(editFriday)
+    editFriday.value = "Friday"
+    editFriday.textContent = "Friday"
+
+    editDaySelector.appendChild(editSaturday)
+    editSaturday.value = "Saturday"
+    editSaturday.textContent = "Saturday"
+
+    editDaySelector.appendChild(editSunday)
+    editSunday.value = "Sunday"
+    editSunday.textContent = "Sunday"
+
     let editSubmitBtn = document.createElement("button")
     editSubmitBtn.textContent = "Submit"
 
     let cancelBtn = document.createElement("button")
     cancelBtn.textContent = "Cancel"
-    cancelBtn.addEventListener('click', ()=> {
+    cancelBtn.addEventListener('click', (e)=> {
+      e.preventDefault()
+      editForm.classList.add("editForm-disappear")
       console.log("hello")
     })
 
-    item.appendChild(editFormCancel)
-    editFormCancel.appendChild(editForm)
+    item.appendChild(editForm)
     editForm.appendChild(editItemTitle)
     editForm.appendChild(editItemContent)
+    editForm.appendChild(editDaySelector)
     editForm.appendChild(editSubmitBtn)
-    editFormCancel.appendChild(cancelBtn)
+    editForm.appendChild(cancelBtn)
 
     const editBtnForm = document.querySelector(".edit-form")
 
@@ -151,13 +244,19 @@ function renderListItem(entry) {
       soundEffect.src = "sounds/problemo.mp3";
       soundEffect.play();
 
+      editForm.classList.add("editForm-disappear")
+
       let editInputs = document.querySelectorAll(".edit-input")
+      let editDaySelect = document.querySelector(".editDaySelector")
       let editTitle = editInputs[0].value
       let editContent = editInputs[1].value
+      let editDay = editDaySelect.value
 
       const info = {
         title: editTitle,
-        content: editContent
+        content: editContent,
+        date: editDay
+
       }
 
 
@@ -174,13 +273,20 @@ function renderListItem(entry) {
       .then(res => res.json())
       .then(data => {
         console.log(data)
-        e.target.parentElement.textContent = data.title + ": " + data.content
+        const parentElement = e.target.parentElement.firstChild
+        const parentElement2 = e.target.parentElement.childNodes[1]
+        console.log(parentElement2)
+        const editUpdate = document.createElement('span')
+        editUpdate.classList.add("edit-update")
+        editUpdate.textContent = data.title + ": " + data.content
+        parentElement2.textContent = data.date
+        parentElement.textContent = editUpdate.textContent
 
       })
 
   })
 
-}, {once : true}); //ttechnically works but doesnt overwrite text, writes it below it
+})//, {once : true}); //ttechnically works but doesnt overwrite text, writes it below it
 //have to refresh to get it to update, it looks bad
 
   noteUl.appendChild(noteLi)

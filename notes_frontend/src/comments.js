@@ -8,7 +8,7 @@
 //   })
 //
 //   function createComment(data){
-//     const getItem = document.querySelector('')
+//     const getItem = document.querySelector('.noteLi')
 //     const newComment = document.createElement('li')
 //     newComment.textContent = data.content
 //

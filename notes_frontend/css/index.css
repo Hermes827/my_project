@@ -1,8 +1,12 @@
 body {
-  background-color: #8B008B;
+  background-color: black;
   color: black;
   font-family: 'Orbitron', sans-serif;
 }
+/*
+.commentBtn {
+  margin-left: 50%;
+} */
 
 .h5tag {
   color: red;
@@ -11,3 +15,43 @@ body {
 ul {
 list-style-type:none;
 }
+
+.main-div {
+  border-style: solid;
+  border-color: orange;
+  background-color: #8B008B;
+  margin-right:30%;
+  margin-left:30%;
+  margin-top:1%;
+  margin-bottom:1%;
+  padding-bottom:5%;
+}
+
+.image {
+  border-style: solid;
+  border-color: black;
+  border-width: thin;
+  margin-bottom: -30px;
+}
+
+.date-span {
+  color: orange;
+  text-transform: uppercase;
+  font-size: 15px;
+  margin-top: -1.5%;
+  /* border-style: solid;
+  border-color: blue;
+  border-width: thin;
+  padding: 1%; */
+}
+
+.noteLi-span {
+  font-size: 21px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* .btn {
+  height: 20px;
+  /* width: 50px; */
+} */

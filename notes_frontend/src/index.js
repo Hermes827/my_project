@@ -27,11 +27,21 @@ function viewEntry(data) {
 function renderListItem(entry) {
   const noteLi = document.createElement('li')
   noteLi.id = entry.id
-  noteLi.classList.add(".font")
-  noteLi.textContent = entry.title + ": " + entry.content //figure out how to get buttons to go underneath the LI
+  // noteLi.classList.add("font")
+  noteLi.classList.add("noteLi")
+  console.log(entry)
+  const noteLiSpan = document.createElement('span')
+  noteLiSpan.textContent = entry.title + ": " + entry.content + " " //figure out how to get buttons to go underneath the LI
+  noteLiSpan.classList.add('noteLi-span')
+  noteLi.appendChild(noteLiSpan)
+  const dateSpan = document.createElement('div')
+  dateSpan.classList.add('date-span')
+  dateSpan.textContent = entry.date + " "
+  noteLi.appendChild(dateSpan)
 
   const deleteBtn = document.createElement('button')
   deleteBtn.textContent = "Delete"
+  // deleteBtn.classList.add("btn")
   deleteBtn.addEventListener('click', (e) => {
     const deleteItem = e.target.parentElement
 
@@ -57,7 +67,37 @@ function renderListItem(entry) {
 
   ////////////////////////////////////////////////////////////////////
 
+  const commentBtn = document.createElement('button')
+  // commentBtn.classList.add("btn")
+  // commentBtn.classList.add(".commentBtn")
+  commentBtn.textContent = "Comment"
+  // const spaceDiv = document.createElement('div')
+  // // noteli.appendChild(spaceDiv)
+  noteLi.appendChild(commentBtn)
+  commentBtn.addEventListener('click', (e)=> {
+    const commentThing = e.target.parentElement
+
+    const commentLi = document.createElement('li')
+    const commentInput = document.createElement('input')
+    const commentSubmitBtn = document.createElement('button')
+    const commentForm = document.createElement('form')
+    commentForm.appendChild(commentInput)
+    commentForm.appendChild(commentSubmitBtn)
+    commentSubmitBtn.textContent = "submit"
+    commentInput.classList.add("comment-input")
+    commentThing.appendChild(commentForm)
+    //working on comment functionality, need to finish programming submit button stuff
+    commentLi.textContent = commentInput.value
+    commentThing.appendChild(commentLi)
+
+    console.log(commentThing)
+  })
+
+  /////////////////////////////////////////////////////////////////////
+
+
   const editBtn = document.createElement('button')
+  // editBtn.classList.add("btn")
   editBtn.textContent = "Edit"
   editBtn.id = entry.id
   noteLi.appendChild(editBtn) //figure out how to independently modularize this logic and retrieve the

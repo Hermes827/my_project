@@ -1,6 +1,7 @@
 const backendURL = 'http://localhost:3000/api/v1/notes'
 const noteUl = document.querySelector('#notes-list')
 const backendComments = 'http://localhost:3000/api/v1/comments'
+const quoteURL = 'http://localhost:3000/api/v2/quotes'
 
 document.addEventListener('DOMContentLoaded', () => {
   var soundEffect = new Audio();
@@ -112,6 +113,7 @@ function renderListItem(entry) {
         const commentLi = document.createElement('li')
         commentLi.textContent = commentUsername.value + ": " + commentInput.value
         commentUl.appendChild(commentLi)
+        // noteLi.appendChild(commentUl)
 
 
         const bodyData = {
@@ -131,8 +133,8 @@ function renderListItem(entry) {
         .then(res => res.json())
         .then(data => {
           console.log(data)
-          commentLi.textContent = data.username + ": " + data.content
-          commentUl.appendChild(commentLi)
+          // commentLi.textContent = data.username + ": " + data.content
+          // commentUl.appendChild(commentLi)
         })
 
 
@@ -155,6 +157,7 @@ function renderListItem(entry) {
   //element that I need to append to noteLi.
   noteLi.appendChild(deleteBtn)
   editBtn.addEventListener('click', (e) => {
+
 
     const item = e.target.parentElement
     console.log(item)
@@ -293,3 +296,20 @@ function renderListItem(entry) {
 
   return noteLi
 }
+
+function renderQuote() {
+  fetch(quoteURL)
+  .then(res => res.json())
+  .then(data => {
+
+      const mathVar = Math.floor((Math.random() * 11) + 1);
+      const randomQuoteGen = data[mathVar]
+
+      const randomQuoteName = document.querySelector(".quoteName")
+      const randomQuoteContent = document.querySelector(".quoteContent")
+      randomQuoteName.textContent = '- "' + randomQuoteGen.name + '"'
+      randomQuoteContent.textContent = '"' + randomQuoteGen.content + '"'
+  })
+}
+
+renderQuote()

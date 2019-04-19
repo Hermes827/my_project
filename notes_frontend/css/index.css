@@ -1,13 +1,94 @@
 body {
-  background-color: #8B008B;
+  background-color: black;
   color: black;
   font-family: 'Orbitron', sans-serif;
 }
+/*
+.commentBtn {
+  margin-left: 50%;
+} */
 
 .h5tag {
+  margin-top: -2%;
   color: red;
+	-webkit-animation: flash linear 3s infinite;
+	animation: flash linear 3s infinite;
+}
+@-webkit-keyframes flash {
+	0% { opacity: 1; }
+	50% { opacity: .1; }
+	100% { opacity: 1; }
+}
+@keyframes flash {
+	0% { opacity: 1; }
+	50% { opacity: .1; }
+	100% { opacity: 1; }
 }
 
 ul {
 list-style-type:none;
+}
+
+.main-div {
+  border-style: solid;
+  border-color: orange;
+  background-color: #8B008B;
+  margin-right:30%;
+  margin-left:30%;
+  margin-top:0.5%;
+  margin-bottom:0.5%;
+  padding-bottom:1%;
+}
+
+.image {
+  border-style: solid;
+  border-color: black;
+  border-width: thin;
+  margin-bottom: -30px;
+}
+
+.date-span {
+  color: orange;
+  text-transform: uppercase;
+  font-size: 15px;
+  margin-top: -1.5%;
+  /* border-style: solid;
+  border-color: blue;
+  border-width: thin;
+  padding: 1%; */
+}
+
+.noteLi-span {
+  font-size: 21px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.edit-update {
+  font-size: 21px;
+}
+
+.editForm-disappear {
+  display: none;
+}
+
+/* .btn {
+  height: 20px;
+  /* width: 50px; */
+} */
+
+.comment-div {
+  float: right;
+}
+
+.quoteName {
+  font-size: 15px;
+  color: black;
+  margin-bottom: -0.5%
+}
+
+.quoteContent {
+  font-size: 20px;
+  color: green;
+  margin-top: -5%
 }

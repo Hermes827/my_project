@@ -302,7 +302,7 @@ function renderQuote() {
   .then(res => res.json())
   .then(data => {
 
-      const mathVar = Math.floor((Math.random() * 11) + 1);
+      const mathVar = Math.floor((Math.random() * 10) + 1);
       const randomQuoteGen = data[mathVar]
 
       const randomQuoteName = document.querySelector(".quoteName")

@@ -6,9 +6,10 @@ const quoteURL = 'http://localhost:3000/api/v2/quotes'
 document.addEventListener('DOMContentLoaded', () => {
   var soundEffect = new Audio();
   soundEffect.src = "sounds/finalcountdown.mp3";
-  soundEffect.volume = 0.25;
+  soundEffect.volume = 0.5;
   soundEffect.play();
 });
+
 
 
 fetch(backendURL)

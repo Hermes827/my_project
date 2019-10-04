@@ -4,9 +4,9 @@
 
 # TaskMaster-3000
 
-## A quirky tasklist application
+*A quirky tasklist application*
 
-### TaskMaster-3000's features include the following:
+## TaskMaster-3000's features include the following:
 *Rails backend that persists tasks
 *Interactive sound-bytes
 *Full CRUD capabilities for persisted tasks

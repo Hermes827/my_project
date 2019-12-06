@@ -1,7 +1,6 @@
 const backendURL = 'http://localhost:3000/api/v1/notes'
 const noteUl = document.querySelector('#notes-list')
 const backendComments = 'http://localhost:3000/api/v1/comments'
-const quoteURL = 'http://localhost:3000/api/v2/quotes'
 
 document.addEventListener('DOMContentLoaded', () => {
   var soundEffect = new Audio();
@@ -297,20 +296,3 @@ function renderListItem(entry) {
 
   return noteLi
 }
-
-function renderQuote() {
-  fetch(quoteURL)
-  .then(res => res.json())
-  .then(data => {
-
-      const mathVar = Math.floor((Math.random() * 10) + 1);
-      const randomQuoteGen = data[mathVar]
-
-      const randomQuoteName = document.querySelector(".quoteName")
-      const randomQuoteContent = document.querySelector(".quoteContent")
-      randomQuoteName.textContent = '- "' + randomQuoteGen.name + '"'
-      randomQuoteContent.textContent = '"' + randomQuoteGen.content + '"'
-  })
-}
-
-renderQuote()

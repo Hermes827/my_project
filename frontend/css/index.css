@@ -28,6 +28,10 @@ body {
 
 /*------------------------------*/
 
+#notes-list {
+  text-align: center;
+}
+
 .container {
   height: 25em;
 }
@@ -62,6 +66,7 @@ list-style-type:none;
   border-color: orange;
   background-color: #8B008B;
   margin-left: 0.25em;
+  padding-right: 2em;
   width: 16em;
   height: 30em;
   overflow: scroll;

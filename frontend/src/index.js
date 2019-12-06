@@ -1,7 +1,6 @@
 //variables
 const backendURL = 'http://localhost:3000/api/v1/notes'
 const noteUl = document.querySelector('#notes-list')
-const backendComments = 'http://localhost:3000/api/v1/comments'
 
 //----------------------------------------------------
 
@@ -77,87 +76,6 @@ function renderListItem(entry) {
       console.log(data)
     })
   })
-
-  ////////////////////////////////////////////////////////////////////
-
-  const commentBtn = document.createElement('button')
-  // commentBtn.classList.add("btn")
-  // commentBtn.classList.add(".commentBtn")
-  commentBtn.textContent = "Comment"
-  // const spaceDiv = document.createElement('div')
-  // // noteli.appendChild(spaceDiv)
-  noteLi.appendChild(commentBtn)
-  commentBtn.addEventListener('click', (e)=> {
-    const commentThing = e.target.parentElement
-
-    console.log(commentThing)
-
-    // const commentLi = document.createElement('li')
-    const commentInput = document.createElement('input')
-    commentInput.placeholder = "Enter comment here"
-    const commentUsername = document.createElement('input')
-    commentUsername.placeholder = "Enter username here"
-    const commentSubmitBtn = document.createElement('button')
-    const commentCancelBtn = document.createElement('button')
-    commentCancelBtn.textContent = "Cancel"
-    commentCancelBtn.addEventListener('click', (e)=> {
-      e.preventDefault()
-      commentForm.classList.add("editForm-disappear")
-      console.log("hello")
-    })
-    const commentForm = document.createElement('form')
-    const commentUl = document.createElement('ul')
-    commentThing.appendChild(commentForm)
-    commentThing.appendChild(commentUl)
-    commentForm.appendChild(commentUsername)
-    commentForm.appendChild(commentInput)
-    commentForm.appendChild(commentSubmitBtn)
-    commentForm.appendChild(commentCancelBtn)
-    commentSubmitBtn.textContent = "submit"
-
-    commentForm.addEventListener('submit', (e)=> {
-        e.preventDefault()
-
-        console.log(e.target.parentElement)
-        console.log("hello")
-
-        const commentLi = document.createElement('li')
-        commentLi.textContent = commentUsername.value + ": " + commentInput.value
-        commentUl.appendChild(commentLi)
-        // noteLi.appendChild(commentUl)
-
-
-        const bodyData = {
-          username: commentUsername.value,
-          content: commentInput.value,
-          note_id: entry.id
-        }
-
-        fetch(backendComments, {
-          method: "POST",
-          body: JSON.stringify(bodyData),
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          }
-        })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          // commentLi.textContent = data.username + ": " + data.content
-          // commentUl.appendChild(commentLi)
-        })
-
-
-    })
-    // commentInput.classList.add("comment-input")
-    //
-    // //working on comment functionality, need to finish programming submit button stuff
-    //
-    // commentThing.appendChild(commentLi)
-  })
-
-  /////////////////////////////////////////////////////////////////////
 
 
   const editBtn = document.createElement('button')

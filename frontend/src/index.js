@@ -1,6 +1,12 @@
+//variables
+
 const backendURL = 'http://localhost:3000/api/v1/notes'
 const noteUl = document.querySelector('#notes-list')
 const backendComments = 'http://localhost:3000/api/v1/comments'
+
+//----------------------------------------------------
+
+//background music
 
 document.addEventListener('DOMContentLoaded', () => {
   var soundEffect = new Audio();
@@ -9,13 +15,21 @@ document.addEventListener('DOMContentLoaded', () => {
   soundEffect.play();
 });
 
+//-------------------------------------------------------
 
+//primary logic
 
+function callData(){
 fetch(backendURL)
   .then(res => res.json())
   .then(data => {
     renderList(data)
+    console.log(data)
   })
+}
+
+callData()
+
 
 function renderList(data) {
   data.forEach((entry)=> {
@@ -23,8 +37,6 @@ function renderList(data) {
 })
 }
 
-function viewEntry(data) {
-}
 
 function renderListItem(entry) {
   const noteLi = document.createElement('li')

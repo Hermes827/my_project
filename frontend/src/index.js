@@ -1,5 +1,4 @@
 //variables
-
 const backendURL = 'http://localhost:3000/api/v1/notes'
 const noteUl = document.querySelector('#notes-list')
 const backendComments = 'http://localhost:3000/api/v1/comments'

@@ -7,9 +7,9 @@ function renderQuote() {
 
       const mathVar = Math.floor((Math.random() * 10) + 1);
       const randomQuoteGen = data[mathVar]
-
       const randomQuoteName = document.querySelector(".quoteName")
       const randomQuoteContent = document.querySelector(".quoteContent")
+      
       randomQuoteName.textContent = '- "' + randomQuoteGen.name + '"'
       randomQuoteContent.textContent = '"' + randomQuoteGen.content + '"'
   })

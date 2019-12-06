@@ -2,6 +2,8 @@ body {
   background-color: black;
   color: black;
   font-family: 'Orbitron', sans-serif;
+  /* background-image: url("../img/galacticbackground.jpg"); */
+  background-size: cover;
 }
 /*
 .commentBtn {
@@ -33,11 +35,26 @@ list-style-type:none;
   border-style: solid;
   border-color: orange;
   background-color: #8B008B;
-  margin-right:30%;
+  float: left;
+  /* width: auto; */
+  /* margin-right:30%;
   margin-left:30%;
   margin-top:0.5%;
   margin-bottom:0.5%;
-  padding-bottom:1%;
+  padding-bottom:1%; */
+}
+
+.todo-list {
+  /* float: right; */
+  border-style: solid;
+  border-color: orange;
+  background-color: #8B008B;
+  /* margin-right:30%; */
+  /* margin-left:30%;
+  margin-top:0.5%;
+  margin-bottom:0.5%;
+  padding-bottom:1%; */
+  width: auto;
 }
 
 .image {
@@ -80,6 +97,10 @@ list-style-type:none;
 .comment-div {
   float: right;
 }
+
+
+
+/* quotes */
 
 .quoteName {
   font-size: 15px;

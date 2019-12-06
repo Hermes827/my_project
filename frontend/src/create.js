@@ -1,5 +1,4 @@
 const formClass = document.querySelector(".create-new-item")
-
 formClass.addEventListener('submit', createItem)
 
 function createItem(e){
@@ -21,10 +20,7 @@ let info = {
   date: date
 }
 
-// console.log(info)
-
 fetch(backendURL, {
-
   method: "POST",
   body: JSON.stringify(info),
   headers: {
@@ -34,11 +30,8 @@ fetch(backendURL, {
 })
   .then(res => res.json())
   .then(data => {
-    console.log(data)
     noteUl.appendChild(renderListItem(data))
   })
-
 inputs[0].value = " "
 inputs[1].value = " "
-
 }

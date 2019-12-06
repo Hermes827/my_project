@@ -54,7 +54,7 @@ list-style-type:none;
   background-color: #8B008B;
   float: left;
   width: 30em;
-  opacity: 0.95;
+  opacity: 0.9;
   /* margin-right:30%;
   margin-left:30%;
   margin-top:0.5%;
@@ -63,7 +63,7 @@ list-style-type:none;
 }
 
 #shimmer {
-	background: linear-gradient(270deg, #696969, #8B008B);
+	background: linear-gradient(270deg, #8B008B, 	#4B0082);
 	background-size: 400% 400%;
 
 	-webkit-animation: shimmer 5s ease infinite;

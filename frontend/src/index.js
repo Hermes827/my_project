@@ -37,28 +37,33 @@ function renderList(data) {
 
 
 function renderListItem(entry) {
+
   const noteLi = document.createElement('li')
-  noteLi.id = entry.id
-  // noteLi.classList.add("font")
   noteLi.classList.add("noteLi")
-  // console.log(entry)
+  noteLi.id = entry.id
+
   const todoDiv = document.createElement('div')
+  noteLi.appendChild(todoDiv)
+
   const noteLiTitleSpan = document.createElement('div')
   noteLiTitleSpan.textContent = entry.title
+  todoDiv.appendChild(noteLiTitleSpan)
+
   const noteLiSpan = document.createElement('p')
   noteLiSpan.textContent = entry.content + " " //figure out how to get buttons to go underneath the LI
   noteLiSpan.classList.add('noteLi-span')
-  todoDiv.appendChild(noteLiTitleSpan)
   todoDiv.appendChild(noteLiSpan)
+
   const dateSpan = document.createElement('div')
   dateSpan.classList.add('date-span')
   dateSpan.textContent = entry.date + " "
+  todoDiv.appendChild(dateSpan)
+
   const createdTodoAt = document.createElement('div')
   createdTodoAt.classList.add('createdTodoAt')
   createdTodoAt.textContent = new Date()
   noteLiSpan.appendChild(createdTodoAt)
-  noteLi.appendChild(todoDiv)
-  todoDiv.appendChild(dateSpan)
+
 
   // const todoDiv = document.createElement('div')
   // const noteLiTitleSpan = document.createElement('span')

@@ -42,14 +42,38 @@ function renderListItem(entry) {
   // noteLi.classList.add("font")
   noteLi.classList.add("noteLi")
   // console.log(entry)
-  const noteLiSpan = document.createElement('span')
-  noteLiSpan.textContent = entry.title + ": " + entry.content + " " //figure out how to get buttons to go underneath the LI
+  const todoDiv = document.createElement('div')
+  const noteLiTitleSpan = document.createElement('div')
+  noteLiTitleSpan.textContent = entry.title
+  const noteLiSpan = document.createElement('p')
+  noteLiSpan.textContent = entry.content + " " //figure out how to get buttons to go underneath the LI
   noteLiSpan.classList.add('noteLi-span')
-  noteLi.appendChild(noteLiSpan)
+  todoDiv.appendChild(noteLiTitleSpan)
+  todoDiv.appendChild(noteLiSpan)
   const dateSpan = document.createElement('div')
   dateSpan.classList.add('date-span')
   dateSpan.textContent = entry.date + " "
-  noteLi.appendChild(dateSpan)
+  const createdTodoAt = document.createElement('div')
+  createdTodoAt.classList.add('createdTodoAt')
+  createdTodoAt.textContent = new Date()
+  noteLiSpan.appendChild(createdTodoAt)
+  noteLi.appendChild(todoDiv)
+  todoDiv.appendChild(dateSpan)
+
+  // const todoDiv = document.createElement('div')
+  // const noteLiTitleSpan = document.createElement('span')
+  // noteLiTitleSpan.textContent = entry.title
+  // const noteLiSpan = document.createElement('span')
+  // noteLiSpan.textContent = entry.content + " " //figure out how to get buttons to go underneath the LI
+  // noteLiSpan.classList.add('noteLi-span')
+  // todoDiv.appendChild(noteLiTitleSpan)
+  // todoDiv.appendChild(noteLiSpan)
+  // const dateSpan = document.createElement('div')
+  // dateSpan.classList.add('date-span')
+  // dateSpan.textContent = entry.date + " "
+  // noteLi.appendChild(todoDiv)
+  // todoDiv.appendChild(dateSpan)
+
 
   const deleteBtn = document.createElement('button')
   deleteBtn.textContent = "Delete"

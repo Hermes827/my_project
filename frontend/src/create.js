@@ -32,6 +32,6 @@ fetch(backendURL, {
   .then(data => {
     noteUl.appendChild(renderListItem(data))
   })
-inputs[0].value = " "
-inputs[1].value = " "
+inputs[0].value = null
+inputs[1].value = null
 }

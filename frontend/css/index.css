@@ -2,13 +2,12 @@ body {
   background-color: black;
   color: black;
   font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
   /* background-image: url("../img/galacticbackground.jpg"); */
   background-size: cover;
 }
-/*
-.commentBtn {
-  margin-left: 50%;
-} */
+
+/* h1 tag */
 
 .h5tag {
   margin-top: -2%;
@@ -27,6 +26,20 @@ body {
 	100% { opacity: 1; }
 }
 
+/*------------------------------*/
+
+.container {
+  height: 25em;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
 ul {
 list-style-type:none;
 }
@@ -36,7 +49,7 @@ list-style-type:none;
   border-color: orange;
   background-color: #8B008B;
   float: left;
-  /* width: auto; */
+  width: 30em;
   /* margin-right:30%;
   margin-left:30%;
   margin-top:0.5%;
@@ -45,16 +58,13 @@ list-style-type:none;
 }
 
 .todo-list {
-  /* float: right; */
   border-style: solid;
   border-color: orange;
   background-color: #8B008B;
-  /* margin-right:30%; */
-  /* margin-left:30%;
-  margin-top:0.5%;
-  margin-bottom:0.5%;
-  padding-bottom:1%; */
-  width: auto;
+  margin-left: 0.25em;
+  width: 16em;
+  height: 30em;
+  overflow: scroll;
 }
 
 .image {
@@ -62,6 +72,7 @@ list-style-type:none;
   border-color: black;
   border-width: thin;
   margin-bottom: -30px;
+  width: auto;
 }
 
 .date-span {

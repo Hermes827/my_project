@@ -43,27 +43,32 @@ function renderListItem(entry) {
   noteLi.id = entry.id
 
   const todoDiv = document.createElement('div')
+  todoDiv.classList.add("todoDiv")
   noteLi.appendChild(todoDiv)
 
+  const infoDiv = document.createElement('div')
+  infoDiv.classList.add("infoDiv")
+  noteLi.appendChild(infoDiv)
+
   const noteLiTitleSpan = document.createElement('div')
+  noteLiTitleSpan.classList.add('noteLiTitleSpan')
   noteLiTitleSpan.textContent = entry.title
   todoDiv.appendChild(noteLiTitleSpan)
 
-  const noteLiSpan = document.createElement('p')
-  noteLiSpan.textContent = entry.content + " " //figure out how to get buttons to go underneath the LI
-  noteLiSpan.classList.add('noteLi-span')
-  todoDiv.appendChild(noteLiSpan)
-
-  const dateSpan = document.createElement('div')
-  dateSpan.classList.add('date-span')
-  dateSpan.textContent = entry.date + " "
-  todoDiv.appendChild(dateSpan)
+  const noteLiContentSpan = document.createElement('p')
+  noteLiContentSpan.textContent = entry.content + " " //figure out how to get buttons to go underneath the LI
+  noteLiContentSpan.classList.add('noteLiContentSpan')
+  todoDiv.appendChild(noteLiContentSpan)
 
   const createdTodoAt = document.createElement('div')
   createdTodoAt.classList.add('createdTodoAt')
   createdTodoAt.textContent = new Date()
-  noteLiSpan.appendChild(createdTodoAt)
+  noteLiContentSpan.appendChild(createdTodoAt)
 
+  const dateSpan = document.createElement('div')
+  dateSpan.classList.add('date-span')
+  dateSpan.textContent = entry.date + " "
+  infoDiv.appendChild(dateSpan)
 
   // const todoDiv = document.createElement('div')
   // const noteLiTitleSpan = document.createElement('span')
@@ -81,10 +86,11 @@ function renderListItem(entry) {
 
 
   const deleteBtn = document.createElement('button')
+  infoDiv.appendChild(deleteBtn)
   deleteBtn.textContent = "Delete"
   // deleteBtn.classList.add("btn")
   deleteBtn.addEventListener('click', (e) => {
-    const deleteItem = e.target.parentElement
+    const deleteItem = e.target.parentElement.previousSibling
 
     var soundEffect = new Audio();
     soundEffect.src = "sounds/baby.mp3";
@@ -108,12 +114,13 @@ function renderListItem(entry) {
 
 
   const editBtn = document.createElement('button')
+  infoDiv.appendChild(editBtn)
   // editBtn.classList.add("btn")
   editBtn.textContent = "Edit"
   editBtn.id = entry.id
-  noteLi.appendChild(editBtn) //figure out how to independently modularize this logic and retrieve the
-  //element that I need to append to noteLi.
-  noteLi.appendChild(deleteBtn)
+  // noteLi.appendChild(editBtn) //figure out how to independently modularize this logic and retrieve the
+  // //element that I need to append to noteLi.
+  // noteLi.appendChild(deleteBtn)
   editBtn.addEventListener('click', (e) => {
 
 

@@ -62,13 +62,13 @@ list-style-type:none;
   padding-bottom:1%; */
 }
 
-#shimmer {
-	background: linear-gradient(270deg, #8B008B, 	#4B0082);
+.shimmer {
+	background: linear-gradient(270deg, #8B008B, #2F4F4F);
 	background-size: 400% 400%;
 
-	-webkit-animation: shimmer 5s ease infinite;
-	-moz-animation: shimmer 5s ease infinite;
-	animation: shimmer 5s ease infinite;
+	-webkit-animation: shimmer 8s ease infinite;
+	-moz-animation: shimmer 8s ease infinite;
+	animation: shimmer 8s ease infinite;
 }
 
 	@-webkit-keyframes shimmer {
@@ -96,6 +96,8 @@ list-style-type:none;
   width: 16em;
   height: 30em;
   overflow: scroll;
+  opacity: 0.9;
+
 }
 
 .image {
@@ -181,5 +183,35 @@ list-style-type:none;
   width: auto;
   /* overflow-wrap: break-word; */
   position: relative;
+
+}
+
+.wrap{
+  display: inline-block;
+  height: 11.5em;
+  width: 27.8em;
+  position: relative;
+  overflow: hidden;
+}
+.wrap img{
+  position:absolute;top:0;left:0;height:100%;width:100%;
+}
+.wrap:before{
+  content:"";z-index:10;
+  position:absolute;height:200%;width:200%;top:-120%;left:-120%;
+  background:linear-gradient(transparent 0%,
+    rgba(255, 255, 255, 0.1) 45%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.1) 55%,
+    transparent 100%);
+    transition:all 2s;
+    transform:rotate(-45deg);
+    animation: shine 10s infinite forwards;
+}
+@keyframes shine{
+  0%{top:-120%;left:-120%;}
+  10%{left:100%;top:100%;}
+  20%{left:100%;top:100%;}
+  100%{left:100%;top:100%;}
 
 }

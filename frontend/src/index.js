@@ -90,12 +90,13 @@ function renderListItem(entry) {
   deleteBtn.textContent = "Delete"
   // deleteBtn.classList.add("btn")
   deleteBtn.addEventListener('click', (e) => {
-    const deleteItem = e.target.parentElement.previousSibling
+    const deleteItem = e.target.parentElement.closest(".noteLi")
 
     var soundEffect = new Audio();
     soundEffect.src = "sounds/baby.mp3";
     soundEffect.play();
 
+    console.log(deleteItem)
     deleteItem.remove()
 
     fetch(backendURL + '/' + entry.id, {

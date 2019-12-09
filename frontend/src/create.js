@@ -8,11 +8,12 @@ var soundEffect = new Audio();
 soundEffect.src = "sounds/live.mp3";
 soundEffect.play();
 
-let inputs = document.querySelectorAll(".input-text")
+let input1 = document.querySelector(".input-text1")
+let input2 = document.querySelector(".input-text2")
 let daySelect = document.querySelector(".select-day")
 let date = daySelect.value
-let title = inputs[0].value
-let content = inputs[1].value
+let title = input1.value
+let content = input2.value
 
 let info = {
   title: title,
@@ -32,6 +33,6 @@ fetch(backendURL, {
   .then(data => {
     noteUl.appendChild(renderListItem(data))
   })
-inputs[0].value = null
-inputs[1].value = null
+input1.value = null
+input2.value = null
 }

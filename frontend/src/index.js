@@ -133,7 +133,7 @@ function renderListItem(entry) {
     createNewItemForm1.appendChild(editForm)
 
     const editItemH3 = document.createElement("h3")
-    editItemH3.classList.add()
+    editItemH3.classList.add("glowfont")
     editItemH3.textContent = "Edit todo item!"
     editForm.appendChild(editItemH3)
 

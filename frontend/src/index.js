@@ -1,10 +1,11 @@
-//variables
+// variables
+
 const backendURL = 'http://localhost:3000/api/v1/notes'
 const noteUl = document.querySelector('#notes-list')
 
 //----------------------------------------------------
 
-//background music
+// background music
 
 document.addEventListener('DOMContentLoaded', () => {
   var soundEffect = new Audio();
@@ -15,14 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //-------------------------------------------------------
 
-//primary logic
+// primary logic
 
 function callData(){
 fetch(backendURL)
   .then(res => res.json())
   .then(data => {
     renderList(data)
-    console.log(data)
   })
 }
 
@@ -38,6 +38,8 @@ function renderList(data) {
 
 function renderListItem(entry) {
 
+  // elements
+
   const noteLi = document.createElement('li')
   noteLi.classList.add("noteLi")
   noteLi.id = entry.id
@@ -46,18 +48,14 @@ function renderListItem(entry) {
   todoDiv.classList.add("todoDiv")
   noteLi.appendChild(todoDiv)
 
-  const infoDiv = document.createElement('div')
-  infoDiv.classList.add("infoDiv")
-  noteLi.appendChild(infoDiv)
-
   const noteLiTitleSpan = document.createElement('div')
   noteLiTitleSpan.classList.add('noteLiTitleSpan')
   noteLiTitleSpan.textContent = entry.title
   todoDiv.appendChild(noteLiTitleSpan)
 
   const noteLiContentSpan = document.createElement('p')
-  noteLiContentSpan.textContent = entry.content + " " //figure out how to get buttons to go underneath the LI
   noteLiContentSpan.classList.add('noteLiContentSpan')
+  noteLiContentSpan.textContent = entry.content + " " //figure out how to get buttons to go underneath the LI
   todoDiv.appendChild(noteLiContentSpan)
 
   const createdTodoAt = document.createElement('div')
@@ -65,42 +63,35 @@ function renderListItem(entry) {
   createdTodoAt.textContent = new Date()
   noteLiContentSpan.appendChild(createdTodoAt)
 
+  const infoDiv = document.createElement('div')
+  infoDiv.classList.add("infoDiv")
+  noteLi.appendChild(infoDiv)
+
   const dateSpan = document.createElement('div')
   dateSpan.classList.add('date-span')
   dateSpan.textContent = entry.date + " "
   infoDiv.appendChild(dateSpan)
 
-  // const todoDiv = document.createElement('div')
-  // const noteLiTitleSpan = document.createElement('span')
-  // noteLiTitleSpan.textContent = entry.title
-  // const noteLiSpan = document.createElement('span')
-  // noteLiSpan.textContent = entry.content + " " //figure out how to get buttons to go underneath the LI
-  // noteLiSpan.classList.add('noteLi-span')
-  // todoDiv.appendChild(noteLiTitleSpan)
-  // todoDiv.appendChild(noteLiSpan)
-  // const dateSpan = document.createElement('div')
-  // dateSpan.classList.add('date-span')
-  // dateSpan.textContent = entry.date + " "
-  // noteLi.appendChild(todoDiv)
-  // todoDiv.appendChild(dateSpan)
-
-
   const deleteBtn = document.createElement('button')
   infoDiv.appendChild(deleteBtn)
   deleteBtn.textContent = "Delete"
-  // deleteBtn.classList.add("btn")
+
+  //--------------------------------------
+
+
   deleteBtn.addEventListener('click', (e) => {
+
     const deleteItem = e.target.parentElement.closest(".noteLi")
 
     var soundEffect = new Audio();
     soundEffect.src = "sounds/baby.mp3";
     soundEffect.play();
 
-    console.log(deleteItem)
+    setInterval(function(){
     deleteItem.remove()
+  }, 700);
 
     fetch(backendURL + '/' + entry.id, {
-
       method: "DELETE",
       headers: {
         'Accept': 'application/json',
@@ -116,38 +107,54 @@ function renderListItem(entry) {
 
   const editBtn = document.createElement('button')
   infoDiv.appendChild(editBtn)
-  // editBtn.classList.add("btn")
   editBtn.textContent = "Edit"
   editBtn.id = entry.id
+
   // noteLi.appendChild(editBtn) //figure out how to independently modularize this logic and retrieve the
   // //element that I need to append to noteLi.
   // noteLi.appendChild(deleteBtn)
+
   editBtn.addEventListener('click', (e) => {
 
+    const editItem = e.target.parentElement
+    const deleteBtn1 = editItem.childNodes[1]
+    const editBtn1 = editItem.childNodes[2]
 
-    const item = e.target.parentElement
-    console.log(item)
-
-
-    let editForm = document.createElement("form")
+    const editForm = document.createElement("form")
     editForm.classList.add("edit-form")
-    editForm.classList.remove("editForm-disappear")
-  console.log("hello")
+    deleteBtn1.classList.add("editForm-disappear")
+    editBtn1.classList.add("editForm-disappear")
+    // const createNewItemForm1 = document.querySelector(".originalForm")
+    // const createNewItemForm2 = document.querySelector(".create-new-item")
+    // console.log(createNewItemForm2)
+    // createNewItemForm2.classList.add("editForm-disappear")
+    // createNewItemForm1.appendChild(editForm)
+    editItem.appendChild(editForm)
 
+    // editForm.classList.remove("editForm-disappear")
     // let editFormCancel = document.createElement("form")
     // editFormCancel.classList.add("edit-form-cancel")
 
-    let editItemTitle = document.createElement("input")
+    const editItemTitle = document.createElement("input")
     editItemTitle.classList.add("edit-input")
-    editTextField = document.querySelectorAll('.edit-input')
+    // editTextField = document.querySelectorAll('.edit-input')
     editItemTitle.placeholder = "Name of task"
+    editForm.appendChild(editItemTitle)
 
-    let editItemContent = document.createElement("input")
+
+    const editItemContent = document.createElement("input")
     editItemContent.classList.add("edit-input")
     editItemContent.placeholder = "Describe task"
+    editForm.appendChild(editItemContent)
 
-    let editDaySelector = document.createElement("select")
+
+
+    // edit day selector
+
+    const editDaySelector = document.createElement("select")
     editDaySelector.classList.add("editDaySelector")
+    editForm.appendChild(editDaySelector)
+
     let editMonday = document.createElement('option')
     let editTuesday = document.createElement('option')
     let editWednesday = document.createElement('option')
@@ -155,6 +162,7 @@ function renderListItem(entry) {
     let editFriday = document.createElement('option')
     let editSaturday = document.createElement('option')
     let editSunday = document.createElement('option')
+
     editDaySelector.appendChild(editMonday)
     editMonday.value = "Monday"
     editMonday.textContent = "Monday"
@@ -183,82 +191,78 @@ function renderListItem(entry) {
     editSunday.value = "Sunday"
     editSunday.textContent = "Sunday"
 
-    let editSubmitBtn = document.createElement("button")
-    editSubmitBtn.textContent = "Submit"
+    //---------------------------------------
 
-    let cancelBtn = document.createElement("button")
+    const editSubmitBtn = document.createElement("button")
+    editSubmitBtn.textContent = "Submit"
+    editForm.appendChild(editSubmitBtn)
+
+
+    const cancelBtn = document.createElement("button")
     cancelBtn.textContent = "Cancel"
-    cancelBtn.addEventListener('click', (e)=> {
+    editForm.appendChild(cancelBtn)
+
+
+    cancelBtn.addEventListener('click', (e) => {
       e.preventDefault()
       editForm.classList.add("editForm-disappear")
-      console.log("hello")
-    })
+      deleteBtn1.classList.remove("editForm-disappear")
+      editBtn1.classList.remove("editForm-disappear")
+      // createNewItemForm2.classList.remove("editForm-disappear")
 
-    item.appendChild(editForm)
-    editForm.appendChild(editItemTitle)
-    editForm.appendChild(editItemContent)
-    editForm.appendChild(editDaySelector)
-    editForm.appendChild(editSubmitBtn)
-    editForm.appendChild(cancelBtn)
+
+    })
 
     const editBtnForm = document.querySelector(".edit-form")
 
-
-//////////////////////////////////////////////////////////////////////////////////////
-
     editBtnForm.addEventListener('submit', (e) => {
-
       e.preventDefault()
+
       var soundEffect = new Audio();
       soundEffect.src = "sounds/problemo.mp3";
       soundEffect.play();
 
       editForm.classList.add("editForm-disappear")
 
-      let editInputs = document.querySelectorAll(".edit-input")
-      let editDaySelect = document.querySelector(".editDaySelector")
-      let editTitle = editInputs[0].value
-      let editContent = editInputs[1].value
-      let editDay = editDaySelect.value
+      const editInputs = document.querySelectorAll(".edit-input")
+      const editDaySelect = document.querySelector(".editDaySelector")
+      const editTitle = editInputs[0].value
+      const editContent = editInputs[1].value
+      const editDay = editDaySelect.value
 
       const info = {
         title: editTitle,
         content: editContent,
         date: editDay
-
       }
 
-
     fetch(backendURL + "/" + entry.id, {
-
       method: "PATCH",
       body: JSON.stringify(info),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      }
-
+        }
       })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
-        const parentElement = e.target.parentElement.firstChild
-        const parentElement2 = e.target.parentElement.childNodes[1]
-        console.log(parentElement2)
-        const editUpdate = document.createElement('span')
-        editUpdate.classList.add("edit-update")
-        editUpdate.textContent = data.title + ": " + data.content
-        parentElement2.textContent = data.date
-        parentElement.textContent = editUpdate.textContent
 
+        const parentElement1 = e.target.parentElement.firstChild
+        parentElement1.textContent = data.date
+
+        const parentElement2 = e.target.parentElement.parentElement.firstChild.childNodes[0]
+        parentElement2.textContent = data.title
+
+        const parentElement3 = e.target.parentElement.parentElement.firstChild.childNodes[1]
+        parentElement3.textContent = data.content
+
+        const editedDate = document.createElement('div')
+        editedDate.classList.add("createdTodoAt")
+        editedDate.textContent = new Date()
+        parentElement3.appendChild(editedDate)
       })
-
   })
-
-})//, {once : true}); //ttechnically works but doesnt overwrite text, writes it below it
-//have to refresh to get it to update, it looks bad
-
+})
   noteUl.appendChild(noteLi)
-
-  return noteLi
+  // return noteLi //it still works even if I dont return noteli, why is this?
 }

@@ -130,7 +130,9 @@ body {
 /* main image */
 
 .image {
-  border-style: double;
+  /* border-style: double; */
+  border-style: solid;
+  border-width: thin;
   border-color: black;
 }
 
@@ -262,6 +264,12 @@ body {
 
 .editForm-disappear {
   display: none;
+}
+
+.edit-form {
+  border-style: solid;
+  border-width: medium;
+  border-color: black;
 }
 
 /* --------------------------- */

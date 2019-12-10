@@ -262,14 +262,18 @@ body {
   font-size: 21px;
 }
 
+.edit-input1 {
+
+}
+
 .editForm-disappear {
   display: none;
 }
 
 .edit-form {
-  border-style: solid;
+  /* border-style: solid;
   border-width: medium;
-  border-color: black;
+  border-color: black; */
 }
 
 /* --------------------------- */

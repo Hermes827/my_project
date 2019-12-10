@@ -223,6 +223,8 @@ function renderListItem(entry) {
       soundEffect.play();
 
       editForm.classList.add("editForm-disappear")
+      deleteBtn1.classList.remove("editForm-disappear")
+      editBtn1.classList.remove("editForm-disappear")
 
       const editInputs = document.querySelectorAll(".edit-input")
       const editDaySelect = document.querySelector(".editDaySelector")

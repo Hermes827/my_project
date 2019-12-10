@@ -41,7 +41,7 @@ body {
 }
 
 .shimmer {
-	background: linear-gradient(270deg, #8B008B, #2F4F4F); //
+	background: linear-gradient(270deg, #8B008B, #2F4F4F);
 	background-size: 400% 400%;
 
 	-webkit-animation: shimmer 8s ease infinite;
@@ -308,7 +308,7 @@ list-style-type:none;
   --neon-border-color: #08f;
 }
 
-/* .glowfont {
+.glowfont {
   filter: brightness(0.8);
   font-size: 1.25em;
   margin: 0 3em;
@@ -321,7 +321,7 @@ list-style-type:none;
   border-radius: 1rem;
   text-transform: uppercase;
   animation: flicker 1.5s infinite alternate;
-} */
+}
 
 .glowfont1 {
   filter: brightness(0.8);

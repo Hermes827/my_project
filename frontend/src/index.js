@@ -73,6 +73,7 @@ function renderListItem(entry) {
   infoDiv.appendChild(dateSpan)
 
   const deleteBtn = document.createElement('button')
+  deleteBtn.classList.add("submit")
   infoDiv.appendChild(deleteBtn)
   deleteBtn.textContent = "Delete"
 
@@ -107,6 +108,7 @@ function renderListItem(entry) {
 
   const editBtn = document.createElement('button')
   infoDiv.appendChild(editBtn)
+  editBtn.classList.add("submit")
   editBtn.textContent = "Edit"
   editBtn.id = entry.id
 

@@ -89,7 +89,7 @@ function renderListItem(entry) {
 
     setInterval(function(){
     deleteItem.remove()
-  }, 700);
+  }, 500);
 
     fetch(backendURL + '/' + entry.id, {
       method: "DELETE",
@@ -124,35 +124,40 @@ function renderListItem(entry) {
     editForm.classList.add("edit-form")
     deleteBtn1.classList.add("editForm-disappear")
     editBtn1.classList.add("editForm-disappear")
-    // const createNewItemForm1 = document.querySelector(".originalForm")
-    // const createNewItemForm2 = document.querySelector(".create-new-item")
-    // console.log(createNewItemForm2)
-    // createNewItemForm2.classList.add("editForm-disappear")
-    // createNewItemForm1.appendChild(editForm)
-    editItem.appendChild(editForm)
+    const createNewItemForm1 = document.querySelector(".originalForm")
+    const createNewItemForm2 = document.querySelector(".create-new-item")
+    console.log(createNewItemForm2)
+    createNewItemForm2.classList.add("editForm-disappear")
+    createNewItemForm1.appendChild(editForm)
 
-    // editForm.classList.remove("editForm-disappear")
-    // let editFormCancel = document.createElement("form")
-    // editFormCancel.classList.add("edit-form-cancel")
+    const editItemH3 = document.createElement("h3")
+    editItemH3.classList.add()
+    editItemH3.textContent = "Edit todo item!"
+    editForm.appendChild(editItemH3)
 
     const editItemTitle = document.createElement("input")
-    editItemTitle.classList.add("edit-input")
-    // editTextField = document.querySelectorAll('.edit-input')
+    editItemTitle.classList.add("edit-input1")
+    editItemTitle.classList.add("input-text1")
     editItemTitle.placeholder = "Name of task"
     editForm.appendChild(editItemTitle)
 
+    const spacer = document.createElement("br")
+    editForm.appendChild(spacer)
 
     const editItemContent = document.createElement("input")
-    editItemContent.classList.add("edit-input")
+    editItemContent.classList.add("edit-input2")
+    editItemContent.classList.add("input-text2")
     editItemContent.placeholder = "Describe task"
     editForm.appendChild(editItemContent)
 
-
+    const spacer1 = document.createElement("br")
+    editForm.appendChild(spacer1)
 
     // edit day selector
 
     const editDaySelector = document.createElement("select")
     editDaySelector.classList.add("editDaySelector")
+    editDaySelector.classList.add("select-day")
     editForm.appendChild(editDaySelector)
 
     let editMonday = document.createElement('option')
@@ -195,11 +200,13 @@ function renderListItem(entry) {
 
     const editSubmitBtn = document.createElement("button")
     editSubmitBtn.textContent = "Submit"
+    editSubmitBtn.classList.add("submit")
     editForm.appendChild(editSubmitBtn)
 
 
     const cancelBtn = document.createElement("button")
     cancelBtn.textContent = "Cancel"
+    cancelBtn.classList.add("submit")
     editForm.appendChild(cancelBtn)
 
 
@@ -208,9 +215,7 @@ function renderListItem(entry) {
       editForm.classList.add("editForm-disappear")
       deleteBtn1.classList.remove("editForm-disappear")
       editBtn1.classList.remove("editForm-disappear")
-      // createNewItemForm2.classList.remove("editForm-disappear")
-
-
+      createNewItemForm2.classList.remove("editForm-disappear")
     })
 
     const editBtnForm = document.querySelector(".edit-form")
@@ -225,16 +230,22 @@ function renderListItem(entry) {
       editForm.classList.add("editForm-disappear")
       deleteBtn1.classList.remove("editForm-disappear")
       editBtn1.classList.remove("editForm-disappear")
+      createNewItemForm2.classList.remove("editForm-disappear")
 
-      const editInputs = document.querySelectorAll(".edit-input")
+
+
+      const input1 = document.querySelector(".edit-input1")
+      const input2 = document.querySelector(".edit-input2")
+
+
       const editDaySelect = document.querySelector(".editDaySelector")
-      const editTitle = editInputs[0].value
-      const editContent = editInputs[1].value
+      const editInput1 = input1.value
+      const editInput2 = input2.value
       const editDay = editDaySelect.value
 
       const info = {
-        title: editTitle,
-        content: editContent,
+        title: editInput1,
+        content: editInput2,
         date: editDay
       }
 
@@ -249,22 +260,33 @@ function renderListItem(entry) {
       .then(res => res.json())
       .then(data => {
 
-        const parentElement1 = e.target.parentElement.firstChild
-        parentElement1.textContent = data.date
+        const editTitle = document.querySelector(".noteLiTitleSpan")
+        editTitle.textContent = data.title
 
-        const parentElement2 = e.target.parentElement.parentElement.firstChild.childNodes[0]
-        parentElement2.textContent = data.title
+        const editContent = document.querySelector(".noteLiContentSpan")
+        editContent.textContent = data.content
 
-        const parentElement3 = e.target.parentElement.parentElement.firstChild.childNodes[1]
-        parentElement3.textContent = data.content
+        const editDate = document.querySelector(".date-span")
+        editDate.textContent = data.date
 
-        const editedDate = document.createElement('div')
+        const editedDate = document.createElement("div")
         editedDate.classList.add("createdTodoAt")
+        noteLiContentSpan.appendChild(editedDate)
         editedDate.textContent = new Date()
-        parentElement3.appendChild(editedDate)
+
       })
   })
 })
   noteUl.appendChild(noteLi)
   // return noteLi //it still works even if I dont return noteli, why is this?
 }
+
+// const parentElement1 = e.target.parentElement.firstChild
+// parentElement1.textContent = data.date
+//
+// const parentElement2 = e.target.parentElement.parentElement.firstChild.childNodes[0]
+// parentElement2.textContent = data.title
+//
+// const parentElement3 = e.target.parentElement.parentElement.firstChild.childNodes[1]
+// parentElement3.textContent = data.content
+//

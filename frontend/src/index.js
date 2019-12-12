@@ -53,14 +53,19 @@ function renderListItem(entry) {
   noteLiTitleSpan.textContent = entry.title
   todoDiv.appendChild(noteLiTitleSpan)
 
+  // const noteLiBreak = document.createElement('h1')
+  // noteLiBreak.classList.add("noteLiBreak")
+  // noteLiBreak.textContent = ">"
+  // todoDiv.appendChild(noteLiBreak)
+
   const noteLiContentSpan = document.createElement('p')
   noteLiContentSpan.classList.add('noteLiContentSpan')
-  noteLiContentSpan.textContent = entry.content + " " //figure out how to get buttons to go underneath the LI
+  noteLiContentSpan.textContent = "> " + entry.content + " " //figure out how to get buttons to go underneath the LI
   todoDiv.appendChild(noteLiContentSpan)
 
   const createdTodoAt = document.createElement('div')
   createdTodoAt.classList.add('createdTodoAt')
-  createdTodoAt.textContent = new Date()
+  createdTodoAt.textContent = "created at: " + new Date()
   noteLiContentSpan.appendChild(createdTodoAt)
 
   const infoDiv = document.createElement('div')

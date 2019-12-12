@@ -10,8 +10,9 @@ body {
 /* h1 tag */
 
 .h5tag {
-  margin-top: -2%;
+  margin-top: -0.5em;
   color: red;
+  /* font-weight: bold; */
 	-webkit-animation: flash linear 3s infinite;
 	animation: flash linear 3s infinite;
 }
@@ -38,9 +39,14 @@ body {
   width: 30em;
   height: 30em;
   opacity: 0.9;
+  /* background-image: url("../img/galacticbackground.jpg"); */
+
+  background-image: url("../img/cool.gif");
+  background-blend-mode: lighten;
+  background-size: auto;
 }
 
-.shimmer {
+/* .shimmer {
 	background: linear-gradient(270deg, #8B008B, #2F4F4F);
 	background-size: 400% 400%;
 
@@ -63,7 +69,7 @@ body {
 		 0%{background-position:0% 50%}
 		 50%{background-position:100% 50%}
 		 100%{background-position:0% 50%}
-	}
+	} */
 
   @import url(https://fonts.googleapis.com/css?family=Cabin:400);
 
@@ -130,9 +136,10 @@ body {
 /* main image */
 
 .image {
-  /* border-style: double; */
-  border-style: solid;
-  border-width: thin;
+  border-style: double;
+  opacity: 0.9;
+  /* border-style: solid; */
+  /* border-width: thin; */
   border-color: black;
 }
 
@@ -174,14 +181,21 @@ body {
 
 .quote {
   margin: 0 3em;
-  margin-top: 1em;
+  margin-top: 0.7em;
+  padding: 0.5em;
   height: 5em;
   overflow: scroll;
+  background-color: black;
+  opacity: 0.9;
+  border-style: double;
+  border-color: orange;
 }
 
 .quoteContent {
   color: green;
   font-size: 1em;
+  font-style: italic;
+  font-weight: bolder;
 }
 
 .quoteName {
@@ -195,7 +209,7 @@ body {
 
 .todoListHeader {
   margin: 0.75em 0;
-  /* margin-left: 1em; */
+  margin-left: 1.5em;
 }
 
 .todo-list {
@@ -207,6 +221,9 @@ body {
   height: 30em;
   overflow: scroll;
   opacity: 0.9;
+  background-image: url("../img/lonesome.gif");
+  background-blend-mode: lighten;
+  background-size: auto;
 }
 
 .noteLi {
@@ -224,8 +241,8 @@ body {
 }
 
 .noteLiContentSpan {
-  border-style: ridge;
-  border-color: green;
+  /* border-style: ridge;
+  border-color: green; */
   font-size: 1em;
   /* margin: 0 0.5em; */
   padding: 0.25em 0.3em;
@@ -235,13 +252,26 @@ body {
 }
 
 .createdTodoAt {
-  margin: 0.25em;
+  margin-top: 0.25em;
+  /* margin-bottom: -0.3em; */
   font-size: 0.5em;
-  color: black;
+  color: red;
 }
 
 .todoDiv {
   margin-bottom: -0.75em;
+  background-color: black;
+  opacity: 0.8;
+  border-radius: 1em;
+  border-style: double;
+  border-color: green
+
+}
+
+.noteLiBreak  {
+  /* background-color: green; */
+  /* border-style: solid;
+  border-color: green; */
 }
 
 .infoDiv {
@@ -256,6 +286,10 @@ body {
   text-transform: uppercase;
   font-size: 0.9em;
   margin-bottom: 0.25em;
+  border-style: solid;
+  background-color: black;
+  border-radius: 1em;
+
 }
 
 .edit-update {
@@ -309,7 +343,7 @@ list-style-type:none;
 }
 
 .glowfont {
-  filter: brightness(0.8);
+  filter: brightness(0.9);
   font-size: 1.25em;
   margin: 0 3em;
   margin-bottom: 0.5em;
@@ -324,7 +358,7 @@ list-style-type:none;
 }
 
 .glowfont1 {
-  filter: brightness(0.8);
+  filter: brightness(0.9);
   font-size: 1.25em;
   width: 10em;
   font-weight: 200;
@@ -334,7 +368,7 @@ list-style-type:none;
   border: 0.3rem solid #fff;
   border-radius: 1rem;
   text-transform: uppercase;
-  animation: flicker 1.5s infinite alternate;
+  animation: flicker 1.25s infinite alternate;
 }
 
 .glowfont::-moz-selection {
